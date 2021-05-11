@@ -2,6 +2,7 @@ import React from 'react'
 import PostCard from './PostCard'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import PostCreate from './PostCreate'
 
 function PostList(){
   const [posts, setPosts] = useState([])
@@ -9,7 +10,7 @@ function PostList(){
   useEffect(() => {
     fetch('http://localhost:3000/posts')
     .then(resp => resp.json())
-    .then(setPosts)
+    .then(allPosts => setPosts(allPosts.reverse()))
   }, [])
 
   const postCards = posts.map((post) => {
@@ -23,11 +24,11 @@ function PostList(){
 
   return (
     <div>
+      <div> < PostCreate posts = {posts} setPosts={setPosts} /> </div>
       <h1>Recent Posts:</h1>
       <ul>
         {postCards}
       </ul>
-      <Link to="/users">click me</Link>
     </div>
   )
 }
