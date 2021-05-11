@@ -1,4 +1,6 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import PostShow from './PostShow'
 
 function PostCard({
   id,
@@ -23,7 +25,7 @@ function PostCard({
 
   return (
     <li>
-      <h3>{title}</h3>
+      <Link to={`posts/${id}`}><h3>{title}</h3></Link>
       <p>Posted By: {username}</p>
       <p>Teams involved: {team1}, {team2}</p>
       {mediaHtml}

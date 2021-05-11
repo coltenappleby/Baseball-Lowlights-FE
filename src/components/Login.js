@@ -27,6 +27,7 @@ function Login({ setCurrentUserId }) {
     .then(resp => resp.json())
     .then((data) => {
       if (data.id){
+        window.sessionStorage.setItem("currentUserId", `${data.id}`)
         setCurrentUserId(data.id)
       } else {
         setErrors(data)

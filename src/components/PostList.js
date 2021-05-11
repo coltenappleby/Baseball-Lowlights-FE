@@ -1,6 +1,7 @@
 import React from 'react'
 import PostCard from './PostCard'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 function PostList(){
   const [posts, setPosts] = useState([])
@@ -26,6 +27,7 @@ function PostList(){
       <ul>
         {postCards}
       </ul>
+      <Link to="/users">click me</Link>
     </div>
   )
 }
