@@ -13,8 +13,11 @@ function PostCard({
   username,
   likes
 }) {
+  // console.log(likes)
   const loggedInUserId = parseInt(window.sessionStorage.getItem("currentUserId"))
-  const [isLiked, setIsLiked] = useState(likes.map((like) => like.userId).includes(loggedInUserId))
+  const [isLiked, setIsLiked] = useState(likes.map((like) => like.user_id).includes(loggedInUserId))
+  const [likeCountCurrent, setLikeCountCurrent] = useState(likesCount)
+  const [activeLikes, setActiveLikes] = useState(likes)
 
   let mediaHtml
   
@@ -34,11 +37,21 @@ function PostCard({
       },
       body: JSON.stringify({post_id: id, user_id: loggedInUserId})
     })
+    .then(res => res.json())
+    .then(newLike => setActiveLikes([...activeLikes, newLike]))
+    setLikeCountCurrent((likeCountCurrent) => likeCountCurrent+1)
+    setIsLiked(true)
+    
   }
 
   function handleDisLike(e){
-    const targetLikeId = likes.find((like) => like.userId === loggedInUserId).id
+    const targetLikeId = activeLikes.find((like) => like.user_id === loggedInUserId).id
     fetch(`http://localhost:3000/likes/${targetLikeId}`, {method: 'DELETE'})
+    setIsLiked(false)
+    setLikeCountCurrent((likeCountCurrent) => likeCountCurrent-1)
+    const filteredLikes = activeLikes.filter((like) => like.id !== targetLikeId)
+    setActiveLikes(filteredLikes)
+
   }
 
   return (
@@ -51,7 +64,7 @@ function PostCard({
       {!isLiked ? 
       <button onClick={handleLike}>👍</button> :
       <button onClick={handleDisLike}>👎</button> }
-      <p>likes: {likesCount}</p>
+      <p>likes: {likeCountCurrent}</p>
     </li>
   ) 
 }
