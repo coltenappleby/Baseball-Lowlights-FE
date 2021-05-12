@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import CommentCard from './CommentCard.js'
+import CommentCreate from './CommentCreate.js'
 
 function PostShow(){
   const [postData, setPostData] = useState("")
@@ -32,7 +33,8 @@ function PostShow(){
   let commentCards
 
   if(postData.comments) {
-    commentCards = postData.comments.map((comment) => <CommentCard {...comment} key = {comment.id} />)
+    const sortedComments = [...postData.comments].sort((a,b) => b.id-a.id)
+    commentCards = sortedComments.map((comment) => <CommentCard {...comment} key = {comment.id} />)
   }
 
   return (
@@ -49,6 +51,7 @@ function PostShow(){
         </div>
         <div className="comment-section">
           <h3>Comments</h3>
+          <CommentCreate setPostData = {setPostData} postData = {postData} postId = {id} />
           <ul>{commentCards} </ul>
         </div>
       </>}
