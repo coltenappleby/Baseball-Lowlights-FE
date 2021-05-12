@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 
-function Login({ setCurrentUserId }) {
+function Login({ setLoggedIn }) {
   const [formData, setFormData] = useState({
     email: "",
     password: ""
@@ -28,7 +28,7 @@ function Login({ setCurrentUserId }) {
     .then((data) => {
       if (data.id){
         window.sessionStorage.setItem("currentUserId", `${data.id}`)
-        setCurrentUserId(data.id)
+        setLoggedIn(true)
       } else {
         setErrors(data)
       }
@@ -39,9 +39,9 @@ function Login({ setCurrentUserId }) {
     <div>
       {errors ? <p style={{color: "red"}}>{errors[0]}</p> : null}
       <form onSubmit={handleSubmit}>
-        <label>Email: </label>
+        <label>Email: </label><br/>
         <input type="text" name="email" value={formData.email} onChange={handleChange}/><br />
-        <label>Password: </label>
+        <label>Password: </label><br/>
         <input type="password" name="password" value={formData.password} onChange={handleChange}/><br />
         <input type="submit" />
       </form>

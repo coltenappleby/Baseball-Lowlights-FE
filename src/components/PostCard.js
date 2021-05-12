@@ -15,7 +15,7 @@ function PostCard({
   
   let mediaHtml
   
-  if (mediaType === "gif") {
+  if (mediaType === "gif" || mediaType === "image/gif") {
     mediaHtml = <div><img src={mediaLink} alt={title}/></div>
   }
   else if (mediaType === "video") {

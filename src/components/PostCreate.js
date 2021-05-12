@@ -11,13 +11,14 @@ function PostCreate({posts, setPosts}) {
         user_id: window.sessionStorage.getItem("currentUserId")
     })
 
+    
     function handleChange(e) {
         setFormData({
             ...formData,
             [e.target.name]: e.target.value
         })
     }
-
+    
     function handleSubmit(e) {
         e.preventDefault()
         fetch(`http://localhost:3000/posts/`, {
@@ -28,31 +29,38 @@ function PostCreate({posts, setPosts}) {
             },
             body: JSON.stringify(formData)
         })
-            .then(res => res.json())
-            .then(newPost => setPosts([...posts, newPost].reverse()))
+        .then(res => res.json())
+        .then(newPost => setPosts([...posts, newPost].reverse()))
     }
-
-
-
+    
+    const teams = ['Arizona Diamondbacks','Atlanta Braves','Baltimore Orioles','Boston Red Sox','Chicago Cubs','Chicago White Sox','Cincinnati Reds','Cleveland Indians','Colorado Rockies','Detroit Tigers','Houston Astros','Kansas City Royals','Los Angeles Angels','Los Angeles Dodgers','Miami Marlins','Milwaukee Brewers','Minnesota Twins','New York Mets','New York Yankees','Oakland Athletics','Philadelphia Phillies','Pittsburgh Pirates','San Diego Padres','San Francisco Giants','Seattle Mariners','St. Louis Cardinals','Tampa Bay Rays','Texas Rangers','Toronto Blue Jays','Washington Nationals']
+    
+    const teamSelectOptions = teams.map(team => <option value={team}>{team}</option>)
+    
     return (
-        <div>
-        {/* {errors ? <p style={{color: "red"}}>{errors[0]}</p> : null} */}
         <form onSubmit={handleSubmit}>
-            <label>Title: </label>
-            <input type="text" name="title" value={formData.title} onChange={handleChange}/><br />
-            <label>Description: </label>
-            <input type="text" name="description" value={formData.description} onChange={handleChange}/><br />
-            <label>Media Link: </label>
-            <input type="text" name="media_link" value={formData.media_link} onChange={handleChange}/><br />
-            <label>Media Type: </label>
-            <input type="text" name="media_type" value={formData.media_type} onChange={handleChange}/><br />
-            <label>Team1: </label>
-            <input type="text" name="team1" value={formData.team1} onChange={handleChange}/><br />
-            <label>Team2: </label>
-            <input type="text" name="team2" value={formData.team2} onChange={handleChange}/><br />
+            <label>Title: </label><br/>
+            <input type="text" name="title" value={formData.title} onChange={handleChange}/><br/>
+            <label>Post Type: </label><br/>
+            <select name="media_type" onChange={handleChange}>
+                <option value="image/gif">Image/Gif</option>
+                <option value="text">Text</option>
+                <option value="video">Video</option>
+            </select><br/>
+            <label>Team1 (required): </label><br/>
+            <select name="team1" onChange={handleChange}>
+                {teamSelectOptions}
+            </select><br/>
+            <label>Team2 (optional): </label><br/>
+            <select name="team2" onChange={handleChange}>
+                {teamSelectOptions}
+            </select><br/>
+            <label>Media Link: </label><br/>
+            <textarea name="media_link" value={formData.media_link} onChange={handleChange}/><br/>
+            <label>Description: </label><br/>
+            <textarea name="description" value={formData.description} onChange={handleChange}/><br/>
             <input type="submit" />
         </form>
-        </div>
     )
 
 }

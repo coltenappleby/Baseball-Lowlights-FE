@@ -6,11 +6,11 @@ import PostShow from './PostShow'
 import UserShow from './UserShow'
 
 function App() {
-  const [currentUserId, setCurrentUserId] = useState("") 
+  const [loggedIn, setLoggedIn] = useState(false)
 
   return (
     <>
-      {(!window.sessionStorage.getItem("currentUserId")) ? <Login setCurrentUserId={setCurrentUserId}/> : 
+      {(!window.sessionStorage.getItem("currentUserId")) ? <Login setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> : 
       <Switch>
         <Route exact path="/">
           <PostList />
