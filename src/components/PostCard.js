@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 function PostCard({
@@ -12,10 +12,14 @@ function PostCard({
   likesCount,
   username 
 }) {
+  // const [mediaElement, setMediaElement] = useState("")
+  // // https://www.youtube.com/oembed?url=https%3A//
 
-  // https://www.youtube.com/oembed?url=https%3A//
-
-  
+  // useEffect( () => {
+  //   fetch(`https://www.youtube.com/oembed?url=https%3A//${mediaLink}`)
+  //   .then(res => res.json())
+  //   .then(console.log)
+  // })
   
   function createIFrame(embedLink, mediaType) {
     if (mediaType === "video") {
