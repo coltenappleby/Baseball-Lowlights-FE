@@ -30,11 +30,16 @@ function PostShow(){
     mediaHtml = <div dangerouslySetInnerHTML={{__html: postData.mediaLink}}></div>
   }
 
+  function removeComment(id) {
+    const filteredComments = [...postData.comments].filter((comment) => comment.id !== id)
+    setPostData({...postData, comments: filteredComments})
+  }
+
   let commentCards
 
   if(postData.comments) {
     const sortedComments = [...postData.comments].sort((a,b) => b.id-a.id)
-    commentCards = sortedComments.map((comment) => <CommentCard {...comment} key = {comment.id} />)
+    commentCards = sortedComments.map((comment) => <CommentCard {...comment} key = {comment.id} deleteComment = {removeComment}/>)
   }
 
   return (

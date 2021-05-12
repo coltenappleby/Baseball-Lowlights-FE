@@ -28,6 +28,7 @@ function CommentCreate({postId, setPostData, postData}) {
            const updatedComments = [...postData.comments, newComment]
            setPostData({...postData, comments: updatedComments})
         })
+        setFormData({user_id: window.sessionStorage.getItem("currentUserId"), post_id: postId, content: ""})
     }
 
     return(
