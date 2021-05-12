@@ -1,13 +1,12 @@
 import React, { useState } from 'react'
-import Register from './Register'
 
-function Login({ setLoggedIn }) {
-  const [formData, setFormData] = useState({
+function Register({ setLoggedIn }) {
+  const [formData, setFormData] = useState ({
     email: "",
-    password: ""
+    password: "",
+    username: ""
   })
   const [errors, setErrors] = useState([])
-  const [loginOrRegister, setLoginOrRegister] = useState("login")
 
   function handleChange(e) {
     setFormData({
@@ -18,7 +17,7 @@ function Login({ setLoggedIn }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    fetch('http://localhost:3000/users/login', {
+    fetch('http://localhost:3000/users', {
       method: 'POST',
       headers: {
         "Content-Type": 'application/json',
@@ -28,42 +27,35 @@ function Login({ setLoggedIn }) {
     })
     .then(resp => resp.json())
     .then((data) => {
-      if (data.id){
+      if (data.id) {
         window.sessionStorage.setItem("currentUserId", `${data.id}`)
         setLoggedIn(true)
-      } else {
+      }
+      else {
         setErrors(data)
       }
     })
   }
 
-  function toggleLoginOrRegister() {
-    if (loginOrRegister === "login") {
-      setLoginOrRegister("register")
-    }
-    else if (loginOrRegister === "register") {
-      setLoginOrRegister("login")
-    }
+  let displayErrors
+  if (errors.length > 0) {
+    displayErrors = errors.map((error, idx) => <p key={error + idx} style={{color: "red"}}>{error}</p>)
   }
 
   return (
     <div>
-      {errors ? <p style={{color: "red"}}>{errors[0]}</p> : null}
-      {loginOrRegister === "login" && <form onSubmit={handleSubmit}>
+      {errors.length > 0 && <div>{displayErrors}</div>}
+      <form onSubmit={handleSubmit}>
         <label>Email: </label><br/>
         <input type="text" name="email" value={formData.email} onChange={handleChange}/><br />
+        <label>Username: </label><br/>
+        <input type="text" name="username" value={formData.username} onChange={handleChange}/><br />
         <label>Password: </label><br/>
         <input type="password" name="password" value={formData.password} onChange={handleChange}/><br />
         <input type="submit" />
-      </form>}
-      {loginOrRegister === "register" && <Register setLoggedIn={setLoggedIn}/>}
-      {loginOrRegister === "login" ? (
-      <button onClick={toggleLoginOrRegister}>Register</button>
-      ) : (
-        <button onClick={toggleLoginOrRegister}>Back to Login</button>
-      )}
+      </form>
     </div>
   )
 }
 
-export default Login 
+export default Register

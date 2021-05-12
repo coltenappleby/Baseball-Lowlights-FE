@@ -26,6 +26,8 @@ function PostList(){
     )
   })
 
+  console.log(window.sessionStorage.getItem("currentUserId"))
+
   return (
     <div>
       <div>
@@ -36,8 +38,7 @@ function PostList(){
           </>
         ) : (
         <button onClick={toggleShowForm}>Add a Post</button>
-        )
-        }
+        )}
       </div>
       <h1>Recent Posts:</h1>
       <ul>

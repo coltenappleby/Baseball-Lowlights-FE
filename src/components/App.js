@@ -10,7 +10,7 @@ function App() {
 
   return (
     <>
-      {(!window.sessionStorage.getItem("currentUserId")) ? <Login setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> : 
+      {(!window.sessionStorage.getItem("currentUserId")) ? <Login setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> :
       <Switch>
         <Route exact path="/">
           <PostList />
