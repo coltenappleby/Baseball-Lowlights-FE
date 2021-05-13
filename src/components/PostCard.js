@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, useHistory } from 'react-router-dom'
+import { Link, useHistory, useLocation } from 'react-router-dom'
 
 function PostCard({
   id,
@@ -13,9 +13,11 @@ function PostCard({
   username,
   likes,
   userId,
-  removePost
+  removePost,
+  removeUserPost
 }) {
   let history = useHistory()
+  let location = useLocation()
   const loggedInUserId = parseInt(window.sessionStorage.getItem("currentUserId"))
   const [isLiked, setIsLiked] = useState(likes.map((like) => like.user_id).includes(loggedInUserId))
   const [likeCountCurrent, setLikeCountCurrent] = useState(likesCount)
@@ -29,6 +31,8 @@ function PostCard({
   else if (mediaType === "video") {
     mediaHtml = <div dangerouslySetInnerHTML={{__html: mediaLink}} className="media-container"></div>
   }
+
+  
 
   function handleLike(e){
     fetch(`http://localhost:3000/likes`, {
@@ -59,10 +63,25 @@ function PostCard({
   }
 
   function handleDelete(e) {
-    e.preventDefault()
     fetch(`http://localhost:3000/posts/${id}`, {method: 'DELETE'})
     removePost(id)
-    history.push("/")
+    if(location.pathname.includes("/users")){
+      removeUserPost(id)
+    } 
+    else {
+      history.push("/")
+    }
+  }
+
+  let teamsDisplay
+  if (team1 === "none" && team2 === "none"){
+    teamsDisplay = "General Highlight"
+  }
+  else if (team2 === "none") {
+    teamsDisplay = `Team: ${team1}`
+  }
+  else {
+    teamsDisplay = `Teams: ${team1} & ${team2}`
   }
 
   return (
@@ -83,7 +102,7 @@ function PostCard({
       </div>
       <div className="post-card-main">
         <div className="post-card-header">
-          <p><Link to={`/users/${userId}`}><strong>{username}</strong></Link> | Teams: {team1}, {team2}</p> 
+          <p><Link to={`/users/${userId}`}><strong>{username}</strong></Link> | {teamsDisplay}</p> 
           <Link to={`/posts/${id}`}><h3>{title}</h3></Link>
         </div>
         {mediaHtml}

@@ -5,8 +5,8 @@ function PostCreate({posts, setPosts}) {
         title: "",
         media_link: "",
         media_type: "image/gif",
-        team1: "",
-        team2: "",
+        team1: "none",
+        team2: "none",
         description: "",
         user_id: window.sessionStorage.getItem("currentUserId")
     })
@@ -36,8 +36,8 @@ function PostCreate({posts, setPosts}) {
             title: "",
             media_link: "",
             media_type: "image/gif",
-            team1: "",
-            team2: "",
+            team1: "none",
+            team2: "none",
             description: "",
             user_id: window.sessionStorage.getItem("currentUserId")
         })
@@ -58,11 +58,13 @@ function PostCreate({posts, setPosts}) {
                 <option value="video">Video</option>
             </select><br/>
             <label>Team1 (required): </label><br/>
-            <select name="team1" onChange={handleChange}>
+            <select name="team1" value={formData.team1} onChange={handleChange}>
+                <option value="none">none</option>
                 {teamSelectOptions}
             </select><br/>
             <label>Team2 (optional): </label><br/>
-            <select name="team2" onChange={handleChange}>
+            <select name="team2" value={formData.team2} onChange={handleChange}>
+                <option value="none">none</option>
                 {teamSelectOptions}
             </select><br/>
             <label>Media Link: </label><br/>

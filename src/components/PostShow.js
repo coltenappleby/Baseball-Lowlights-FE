@@ -4,7 +4,7 @@ import CommentCard from './CommentCard.js'
 import CommentCreate from './CommentCreate.js'
 import PostCard from './PostCard.js'
 
-function PostShow(){
+function PostShow({ removePost }){
   const [postData, setPostData] = useState([])
   const [comments, setComments] = useState([])
   const [errors, setErrors] = useState("")
@@ -38,6 +38,7 @@ function PostShow(){
     return (
       <PostCard 
         key={post.id}
+        removePost={removePost}
         {...post}
       />
     )

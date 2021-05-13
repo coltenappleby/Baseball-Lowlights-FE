@@ -1,25 +1,15 @@
 import React from 'react'
 import PostCard from './PostCard'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import PostCreate from './PostCreate'
 
-function PostList(){
-  const [posts, setPosts] = useState([])
+function PostList({ posts, setPosts, removePost }){
+  
   const [showForm, setShowForm] = useState(false)
 
-  useEffect(() => {
-    fetch('http://localhost:3000/posts')
-    .then(resp => resp.json())
-    .then(setPosts)
-  }, [])
 
   function toggleShowForm() {
     setShowForm(showForm => !showForm)
-  }
-
-  function removePost(id) {
-    const filteredPosts = posts.filter((post) => post.id !== id)
-    setPosts(filteredPosts)
   }
 
   const postCards = posts.map((post) => {

@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import PostCard from './PostCard.js'
 
-function UserShow() {
+function UserShow({ removePost }) {
+    const [userShowPosts, setUserShowPosts] = useState([])
     const [user, setUser] = useState("")
 
     let { id } = useParams()
@@ -10,22 +11,44 @@ function UserShow() {
     useEffect( () => {
         fetch(`http://localhost:3000/users/${id}`)
             .then(res => res.json())
-            .then(setUser)
+            .then((userData) => {
+                setUserShowPosts(userData.posts)
+                setUser(userData)
+            })
     }, [id])
 
+    function removeUserPost(id) {
+        const filteredPosts = userShowPosts.filter((post) => post.id !== id)
+        setUserShowPosts(filteredPosts)
+    }
     
     let postCards
-    if(user) {
-      const sortedPosts = user.posts.sort((a, b) => b.id - a.id)
-      postCards = sortedPosts.map((post) => <PostCard {...post} key = {post.id} />)  
+    if(user){
+      const sortedPosts = userShowPosts.sort((a, b) => b.id - a.id)
+      postCards = sortedPosts.map((post) => {
+        return (
+            <PostCard 
+                {...post} 
+                key={post.id} 
+                removeUserPost={removeUserPost} 
+                removePost={removePost} 
+            />
+        )
+      })  
     }
 
     return(
         <div>
             <h1>{user.username}'s Posts</h1>
-            <div className="post-cards-container">
-                {postCards}
-            </div>
+            {postCards > 0 ? (
+                <div className="post-cards-container">
+                    {postCards}
+                </div>) 
+            : (
+                <div>
+                    <p>No posts at the moment</p>
+                </div>
+            )}
         </div>
     )
 
