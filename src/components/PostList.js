@@ -16,7 +16,6 @@ function PostList(){
   function toggleShowForm() {
     setShowForm(showForm => !showForm)
   }
-
   const postCards = posts.map((post) => {
     return (
       <PostCard 

@@ -14,7 +14,6 @@ function PostCard({
   likes,
   userId
 }) {
-  // console.log(likes)
   const loggedInUserId = parseInt(window.sessionStorage.getItem("currentUserId"))
   const [isLiked, setIsLiked] = useState(likes.map((like) => like.user_id).includes(loggedInUserId))
   const [likeCountCurrent, setLikeCountCurrent] = useState(likesCount)
@@ -72,6 +71,8 @@ function PostCard({
         </div>
         {mediaHtml}
         <p>{description}</p> 
+        <Link to={`/posts/${id}/edit`}><button> EDIT </button></Link>
+        
       </div>  
     </div>
   ) 

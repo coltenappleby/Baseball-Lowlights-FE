@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 
-function CommentCreate({postId, setPostData, postData}) {
+function CommentCreate({postId, setComments, comments}) {
     const [formData, setFormData] = useState({
         user_id: window.sessionStorage.getItem("currentUserId"),
         post_id: postId,
@@ -23,10 +23,8 @@ function CommentCreate({postId, setPostData, postData}) {
         })
         .then(res => res.json())
         .then(newComment => {
-        //    setPostData( ...postData, [e.target.comments] : [...e.target.comments, newComment])
-
-           const updatedComments = [...postData.comments, newComment]
-           setPostData({...postData, comments: updatedComments})
+           const updatedComments = [...comments, newComment]
+           setComments(updatedComments)
         })
         setFormData({user_id: window.sessionStorage.getItem("currentUserId"), post_id: postId, content: ""})
     }
