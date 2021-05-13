@@ -11,7 +11,8 @@ function PostCard({
   team2,
   likesCount,
   username,
-  likes
+  likes,
+  userId
 }) {
   // console.log(likes)
   const loggedInUserId = parseInt(window.sessionStorage.getItem("currentUserId"))
@@ -22,10 +23,10 @@ function PostCard({
   let mediaHtml
   
   if (mediaType === "gif" || mediaType === "image/gif") {
-    mediaHtml = <div><img src={mediaLink} alt={title}/></div>
+    mediaHtml = <div className="media-container"><img src={mediaLink} alt={title}/></div>
   }
   else if (mediaType === "video") {
-    mediaHtml = <div dangerouslySetInnerHTML={{__html: mediaLink}}></div>
+    mediaHtml = <div dangerouslySetInnerHTML={{__html: mediaLink}} className="media-container"></div>
   }
 
   function handleLike(e){
@@ -55,17 +56,24 @@ function PostCard({
   }
 
   return (
-    <li>
-      <Link to={`/posts/${id}`}><h3>{title}</h3></Link>
-      <p>Posted By: {username}</p>
-      <p>Teams involved: {team1}, {team2}</p>
-      {mediaHtml}
-      <p>{description}</p>
-      {!isLiked ? 
-      <button onClick={handleLike}>👍</button> :
-      <button onClick={handleDisLike}>👎</button> }
-      <p>likes: {likeCountCurrent}</p>
-    </li>
+    <div className="post-card">
+      <div className="post-card-likes">
+        <div className="post-card-likes-content">
+          {!isLiked ? <button onClick={handleLike}>👍</button> :
+          <button onClick={handleDisLike}>👎</button>}
+          <p>Likes:</p>
+          <p>{likeCountCurrent}</p>
+        </div>
+      </div>
+      <div className="post-card-main">
+        <div className="post-card-header">
+          <p><Link to={`/users/${userId}`}><strong>{username}</strong></Link> | Teams: {team1}, {team2}</p> 
+          <Link to={`/posts/${id}`}><h3>{title}</h3></Link>
+        </div>
+        {mediaHtml}
+        <p>{description}</p> 
+      </div>  
+    </div>
   ) 
 }
 

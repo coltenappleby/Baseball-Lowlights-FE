@@ -26,8 +26,6 @@ function PostList(){
     )
   })
 
-  console.log(window.sessionStorage.getItem("currentUserId"))
-
   return (
     <div>
       <div>
@@ -41,9 +39,9 @@ function PostList(){
         )}
       </div>
       <h1>Recent Posts:</h1>
-      <ul>
+      <div className="post-cards-container">
         {postCards}
-      </ul>
+      </div>
     </div>
   )
 }

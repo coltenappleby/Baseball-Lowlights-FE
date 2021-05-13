@@ -33,7 +33,13 @@ function CommentCreate({postId, setPostData, postData}) {
 
     return(
         <form onSubmit={handleSubmit}>
-            <textarea name="content" value={formData.content} onChange={handleChange}/><br/>
+            <textarea 
+                name="content" 
+                value={formData.content} 
+                onChange={handleChange}
+                rows="8"
+                cols="60"
+            /><br/>
             <input type="submit" />
         </form>
     )

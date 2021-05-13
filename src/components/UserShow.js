@@ -23,7 +23,9 @@ function UserShow() {
     return(
         <div>
             <h1>{user.username}'s Posts</h1>
-            <ul>{postCards}</ul>
+            <div className="post-cards-container">
+                {postCards}
+            </div>
         </div>
     )
 

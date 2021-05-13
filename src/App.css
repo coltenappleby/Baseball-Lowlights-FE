@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: rgb(211, 227, 240);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a {
+  text-decoration: none;
+  color:rgb(149, 175, 197)
+}
+
+a:visited {
+  color: rgb(149, 175, 197);
+}
+
+#root > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+.post-cards-container {
+  width: 50%;
+}
+
+.post-card {
+  display: flex;
+  flex-direction: row;
+  /* align-items: center; */
+  border: 1px solid rgb(149, 175, 197);
+  margin-bottom: 10px;
+  background-color: white;
+  border-radius: 1.5%;
+  width: 100%
+}
+
+.post-card-likes{
+  background-color: rgb(186, 197, 206);
+  border-radius: 1.5%;
+  margin-right: 5px;
+}
+
+.post-card-likes-content {
+  margin-top: 5px;
+}
+
+.post-card-likes-content > button {
+  margin-left: 5px;
+}
+
+.post-card-likes-content > p {
+  margin: 2px;
+}
+
+.post-card-main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.post-card-main > p {
+  width: 80%;
+}
+
+
+.post-card-header {
+  width: 75%
+}
+
+.media-container {
+  width: 95%;
+  display: flex;
+  justify-content: center;
+}
+
+.media-container > iframe {
+  width: 100%;
+  max-width: 600px;
+}
+
+.media-container > img {
+  max-width: 100%;
+  min-width: 100%;
+}
+
+
+
+/* .post-card-header {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+} */
+
+

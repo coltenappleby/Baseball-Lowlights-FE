@@ -46,7 +46,7 @@ function CommentCard({content, username, updatedAt, userId, id, deleteComment}) 
       {!isEditMode ? 
       <p>{text}</p> :
       <form onSubmit = {handleSubmit}>
-        <textarea name="content" value= {text} onChange = {handleChange}></textarea>
+        <textarea name="content" value= {text} onChange = {handleChange} rows="4" cols="25"></textarea>
         <input type="submit"/>
       </form> }
       <p>Updated At: {updatedAt}</p>
