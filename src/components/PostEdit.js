@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import PostCard from './PostCard'
 
 
 function PostEdit(){
-
+    let history = useHistory()
     const { id } = useParams();
     const [postData, setPostData] = useState([])
     const [formData, setFormData] = useState({
         title: "",
         media_link: "",
-        media_type: "image/gif",
+        media_type: "",
         team1: "",
         team2: "",
         description: "",
@@ -28,9 +28,8 @@ function PostEdit(){
             setPostData([data])
             setFormData(data)
         })
-    }, [])
+    }, [id])
 
-    console.log(postData)
 
     function handleChange(e) {
         setFormData({
@@ -39,7 +38,22 @@ function PostEdit(){
         })
     }
 
-    function handleSubmit(e){}
+    function handleSubmit(e){
+        e.preventDefault() 
+        fetch(`http://localhost:3000/posts/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(resp => resp.json())
+        .then(() => {
+            history.push(`/posts/${id}`)
+        })
+        
+    }
 
     const postCards = postData.map((post) => {
         return (
@@ -52,7 +66,7 @@ function PostEdit(){
 
     return(
         <div>
-            <h1> {id} </h1> 
+            <h1> {formData.title} </h1> 
 
             {postCards}
 
@@ -60,21 +74,21 @@ function PostEdit(){
                 <label>Title: </label><br/>
                     <input type="text" name="title" value={formData.title} onChange={handleChange}/><br/>
                 <label>Post Type: </label><br/>
-                    <select name="media_type" onChange={handleChange}>
+                    <select name="media_type" value={formData.mediaType} onChange={handleChange}>
                         <option value="image/gif">Image/Gif</option>
                         <option value="text">Text</option>
                         <option value="video">Video</option>
                     </select><br/>
                 <label>Team1 (required): </label><br/>
-                    <select name="team1" onChange={handleChange}>
+                    <select name="team1" value={formData.team1} onChange={handleChange}>
                         {teamSelectOptions}
                     </select><br/>
                 <label>Team2 (optional): </label><br/>
-                    <select name="team2" onChange={handleChange}>
+                    <select name="team2" value={formData.team2} onChange={handleChange}>
                         {teamSelectOptions}
                     </select><br/>
                 <label>Media Link: </label><br/>
-                    <textarea name="media_link" value={formData.media_link} onChange={handleChange}/><br/>
+                    <textarea name="media_link" value={formData.mediaLink} onChange={handleChange}/><br/>
                 <label>Description: </label><br/>
                     <textarea name="description" value={formData.description} onChange={handleChange}/><br/>
                 <input type="submit" />

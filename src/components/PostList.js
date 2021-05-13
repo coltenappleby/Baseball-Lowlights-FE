@@ -16,14 +16,22 @@ function PostList(){
   function toggleShowForm() {
     setShowForm(showForm => !showForm)
   }
+
+  function removePost(id) {
+    const filteredPosts = posts.filter((post) => post.id !== id)
+    setPosts(filteredPosts)
+  }
+
   const postCards = posts.map((post) => {
     return (
       <PostCard 
         key={post.id}
+        removePost={removePost}
         {...post}
       />
     )
   })
+
 
   return (
     <div>

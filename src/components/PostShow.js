@@ -47,11 +47,10 @@ function PostShow(){
     <>
       {errors ? <div><h1>{errors}</h1></div> :
       <>
-
         <div className="post-cards-container">
           {postCards}
         </div>
-
+      
         <div className="comment-section">
           <h3>Comments</h3>
           <CommentCreate setComments = {setComments} comments = {comments} postId = {id} />

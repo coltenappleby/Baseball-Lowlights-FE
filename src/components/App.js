@@ -6,7 +6,7 @@ import Login from './Login';
 import PostShow from './PostShow';
 import UserShow from './UserShow';
 import PostEdit from './PostEdit';
-import PostCard from './PostCard';
+
 
 function App() {
   const [loggedIn, setLoggedIn] = useState(false)

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 function PostCard({
   id,
@@ -12,8 +12,10 @@ function PostCard({
   likesCount,
   username,
   likes,
-  userId
+  userId,
+  removePost
 }) {
+  let history = useHistory()
   const loggedInUserId = parseInt(window.sessionStorage.getItem("currentUserId"))
   const [isLiked, setIsLiked] = useState(likes.map((like) => like.user_id).includes(loggedInUserId))
   const [likeCountCurrent, setLikeCountCurrent] = useState(likesCount)
@@ -46,12 +48,21 @@ function PostCard({
 
   function handleDisLike(e){
     const targetLikeId = activeLikes.find((like) => like.user_id === loggedInUserId).id
+    
     fetch(`http://localhost:3000/likes/${targetLikeId}`, {method: 'DELETE'})
+    
     setIsLiked(false)
     setLikeCountCurrent((likeCountCurrent) => likeCountCurrent-1)
     const filteredLikes = activeLikes.filter((like) => like.id !== targetLikeId)
     setActiveLikes(filteredLikes)
 
+  }
+
+  function handleDelete(e) {
+    e.preventDefault()
+    fetch(`http://localhost:3000/posts/${id}`, {method: 'DELETE'})
+    removePost(id)
+    history.push("/")
   }
 
   return (
@@ -62,6 +73,12 @@ function PostCard({
           <button onClick={handleDisLike}>👎</button>}
           <p>Likes:</p>
           <p>{likeCountCurrent}</p>
+          {loggedInUserId === userId && (
+            <>
+            <Link to={`/posts/${id}/edit`}><button> EDIT </button></Link>
+            <button onClick={handleDelete}>Delete</button>
+            </>
+          )}
         </div>
       </div>
       <div className="post-card-main">
@@ -71,7 +88,6 @@ function PostCard({
         </div>
         {mediaHtml}
         <p>{description}</p> 
-        <Link to={`/posts/${id}/edit`}><button> EDIT </button></Link>
         
       </div>  
     </div>
