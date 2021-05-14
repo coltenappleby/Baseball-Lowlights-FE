@@ -69,27 +69,47 @@ function PostEdit({ removePost }){
             </div>
             )}
 
-            <form onSubmit={handleSubmit}>
+            <form className="post-form"onSubmit={handleSubmit}>
                 <label>Title: </label><br/>
-                    <input type="text" name="title" value={formData.title} onChange={handleChange}/><br/>
-                <label>Post Type: </label><br/>
-                    <select name="media_type" value={formData.mediaType} onChange={handleChange}>
-                        <option value="image/gif">Image/Gif</option>
-                        <option value="text">Text</option>
-                        <option value="video">Video</option>
-                    </select><br/>
-                <label>Team1 (required): </label><br/>
-                    <select name="team1" value={formData.team1} onChange={handleChange}>
-                        {teamSelectOptions}
-                    </select><br/>
-                <label>Team2 (optional): </label><br/>
-                    <select name="team2" value={formData.team2} onChange={handleChange}>
-                        {teamSelectOptions}
-                    </select><br/>
+                <input type="text" name="title" value={formData.title} onChange={handleChange}/><br/>
+                <div className="post-form-middle-row">
+                    <div className="post-form-middle-row-input">
+                        <label>Post Type: </label><br/>
+                        <select name="media_type" value={formData.mediaType} onChange={handleChange}>
+                            <option value="image/gif">Image/Gif</option>
+                            <option value="text">Text</option>
+                            <option value="video">Video</option>
+                        </select><br/>
+                    </div>
+                    <div className="post-form-middle-row-input">
+                        <label>Team1 (required): </label><br/>
+                        <select name="team1" value={formData.team1} onChange={handleChange}>
+                            {teamSelectOptions}
+                        </select><br/>
+                    </div>
+                    <div className="post-form-middle-row-input">
+                        <label>Team2 (optional): </label><br/>
+                        <select name="team2" value={formData.team2} onChange={handleChange}>
+                            {teamSelectOptions}
+                        </select><br/>
+                    </div>
+                </div>    
                 <label>Media Link: </label><br/>
-                    <textarea name="media_link" value={formData.mediaLink} onChange={handleChange}/><br/>
+                <textarea 
+                    name="media_link" 
+                    value={formData.mediaLink} 
+                    onChange={handleChange}
+                    rows="8"
+                    cols="60"
+                /><br/>
                 <label>Description: </label><br/>
-                    <textarea name="description" value={formData.description} onChange={handleChange}/><br/>
+                <textarea 
+                    name="description" 
+                    value={formData.description} 
+                    onChange={handleChange}
+                    rows="8"
+                    cols="60"
+                /><br/>
                 <input type="submit" />
             </form> 
 

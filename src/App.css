@@ -29,11 +29,34 @@ a:visited {
   align-items: center;
 }
 
+/* LOGIN FORM STYLES */
+
+.login-form > button {
+  width: 100%;
+  margin-top: 1em;
+}
+
+.login-submit {
+  width: 100%;
+  margin-top: 1em;
+}
+
 /* GENERAL FORM STYLES */
 
 form > input {
   border: 1px solid black;
   height: 30px;
+}
+
+/* POST FORM STYLES */
+
+.post-form-middle-row {
+  display: flex;
+  justify-content: space-between; 
+}
+
+.post-form > input[name="title"] {
+  width: 100%;
 }
 
 /* HEADER STYLES */
@@ -64,17 +87,6 @@ header > h1 {
   font-size: 3em;
 }
 
-/* LOGIN FORM STYLES */
-
-.login-form > button {
-  width: 100%;
-  margin-top: 1em;
-}
-
-.login-submit {
-  width: 100%;
-  margin-top: 1em;
-}
 
 /* NAVBAR STYLES */
 

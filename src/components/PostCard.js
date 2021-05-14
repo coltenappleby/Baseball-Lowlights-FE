@@ -23,10 +23,6 @@ function PostCard({
   const [activeLikes, setActiveLikes] = useState(likes)
   const [isLiked, setIsLiked] = useState(likes.map((like) => like.user_id).includes(loggedInUserId))
   
-
-
-  console.log(likes)
-
   let mediaHtml
   
   if (mediaType === "gif" || mediaType === "image/gif") {
@@ -35,8 +31,6 @@ function PostCard({
   else if (mediaType === "video") {
     mediaHtml = <div dangerouslySetInnerHTML={{__html: mediaLink}} className="media-container"></div>
   }
-
-  
 
   function handleLike(e){
     fetch(`http://localhost:3000/likes`, {
