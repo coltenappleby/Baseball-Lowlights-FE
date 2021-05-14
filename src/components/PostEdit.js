@@ -16,6 +16,7 @@ function PostEdit({ removePost }){
         description: "",
         user_id: window.sessionStorage.getItem("currentUserId")
     })
+    const [errors, setErrors] = useState([])
 
     const teams = ['Arizona Diamondbacks','Atlanta Braves','Baltimore Orioles','Boston Red Sox','Chicago Cubs','Chicago White Sox','Cincinnati Reds','Cleveland Indians','Colorado Rockies','Detroit Tigers','Houston Astros','Kansas City Royals','Los Angeles Angels','Los Angeles Dodgers','Miami Marlins','Milwaukee Brewers','Minnesota Twins','New York Mets','New York Yankees','Oakland Athletics','Philadelphia Phillies','Pittsburgh Pirates','San Diego Padres','San Francisco Giants','Seattle Mariners','St. Louis Cardinals','Tampa Bay Rays','Texas Rangers','Toronto Blue Jays','Washington Nationals']
     const teamSelectOptions = teams.map((team, index) => <option key={team + index} value={team}>{team}</option>)
@@ -49,11 +50,19 @@ function PostEdit({ removePost }){
             body: JSON.stringify(formData)
         })
         .then(resp => resp.json())
-        .then(() => {
-            history.push(`/posts/${id}`)
+        .then((updatedPost) => {
+            if(updatedPost.id){
+                // setErrors([])
+                history.push(`/posts/${id}`)
+            } else {
+                setErrors(updatedPost)
+            }
+            
         })
         
     }
+
+    const errorsDisplay = errors.map((error, index) => <p key = {index+error} style = {{color: "red"}} > {error} </p>)
 
     return(
         <div>
@@ -68,6 +77,8 @@ function PostEdit({ removePost }){
                 />
             </div>
             )}
+
+            {errors.length > 0 && <div> {errorsDisplay} </div> }
 
             <form className="post-form"onSubmit={handleSubmit}>
                 <label>Title: </label><br/>
