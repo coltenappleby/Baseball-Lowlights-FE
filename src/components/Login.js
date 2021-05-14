@@ -52,7 +52,7 @@ function Login({ setLoggedIn }) {
 
   return (
     <div>
-      {errors ? <p style={{color: "red"}}>{errors[0]}</p> : null}
+      {errors.length > 0 && <p style={{color: "red"}}>{errors[0]}</p>}
       {loginOrRegister === "login" && <form className="login-form" onSubmit={handleSubmit}>
         <label>Email: </label><br/>
         <input type="text" name="email" value={formData.email} onChange={handleChange}/><br />

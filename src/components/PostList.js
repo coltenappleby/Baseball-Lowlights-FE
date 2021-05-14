@@ -28,14 +28,14 @@ function PostList({ posts, setPosts, removePost }){
       <div>
         {showForm ? (
           <>
-          <PostCreate posts={posts} setPosts={setPosts}/>
+          <PostCreate posts={posts} setPosts={setPosts} setShowForm={setShowForm}/>
           <button onClick={toggleShowForm}>Cancel</button>
           </>
         ) : (
         <button onClick={toggleShowForm}>Add a Post</button>
         )}
       </div>
-      <h1>Recent Posts:</h1>
+      <h1>Recent Posts</h1>
       <div className="post-cards-container">
         {postCards}
       </div>

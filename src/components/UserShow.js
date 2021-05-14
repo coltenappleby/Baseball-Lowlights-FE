@@ -45,8 +45,8 @@ function UserShow({ removePost }) {
                     {postCards}
                 </div>) 
             : (
-                <div>
-                    <p>No posts at the moment</p>
+                <div className="no-user-posts">
+                    <p>{user.username} has no posts at the moment. Come back again later!</p>
                 </div>
             )}
         </div>

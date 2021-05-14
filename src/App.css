@@ -209,5 +209,18 @@ header > h1 {
   text-align: center;
 }
 
+/* MISCELLANEOUS */
+
+.no-user-posts {
+  background-color: white;
+  overflow: auto;
+  display: flex;
+  align-items: center;
+  height: 6em;
+  padding: 0px 20px;
+  border-radius: 1.5%;
+  border: 1px solid rgb(149, 175, 197);
+}
+
 
 

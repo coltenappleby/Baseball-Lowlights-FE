@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 
 
-function CommentCard({content, username, updatedAt, userId, id, deleteComment}) {
+function CommentCard({content, username, userId, id, deleteComment}) {
   const [text, setText] = useState(content)
   const [isEditMode, setIsEditMode] = useState(false)
 
