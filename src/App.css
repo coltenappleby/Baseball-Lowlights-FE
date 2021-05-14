@@ -59,6 +59,18 @@ form > input {
   width: 100%;
 }
 
+/* FILTER STYLES */
+
+.filter-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+.filter-container > input {
+  width: 30%;
+}
+
 /* HEADER STYLES */
 
 header {
