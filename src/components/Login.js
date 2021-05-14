@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom'
 import Register from './Register'
 
 function Login({ setLoggedIn }) {
@@ -8,6 +9,8 @@ function Login({ setLoggedIn }) {
   })
   const [errors, setErrors] = useState([])
   const [loginOrRegister, setLoginOrRegister] = useState("login")
+
+  let history = useHistory()
 
   function handleChange(e) {
     setFormData({
@@ -31,6 +34,7 @@ function Login({ setLoggedIn }) {
       if (data.id){
         window.sessionStorage.setItem("currentUserId", `${data.id}`)
         setLoggedIn(true)
+        history.push("/")
       } else {
         setErrors(data)
       }
@@ -49,19 +53,19 @@ function Login({ setLoggedIn }) {
   return (
     <div>
       {errors ? <p style={{color: "red"}}>{errors[0]}</p> : null}
-      {loginOrRegister === "login" && <form onSubmit={handleSubmit}>
+      {loginOrRegister === "login" && <form className="login-form" onSubmit={handleSubmit}>
         <label>Email: </label><br/>
         <input type="text" name="email" value={formData.email} onChange={handleChange}/><br />
         <label>Password: </label><br/>
         <input type="password" name="password" value={formData.password} onChange={handleChange}/><br />
-        <input type="submit" />
+        <input className="login-submit" type="submit" />
+        {loginOrRegister === "login" ? (
+        <button onClick={toggleLoginOrRegister}>Register</button>
+        ) : (
+          <button onClick={toggleLoginOrRegister}>Back to Login</button>
+        )}
       </form>}
       {loginOrRegister === "register" && <Register setLoggedIn={setLoggedIn}/>}
-      {loginOrRegister === "login" ? (
-      <button onClick={toggleLoginOrRegister}>Register</button>
-      ) : (
-        <button onClick={toggleLoginOrRegister}>Back to Login</button>
-      )}
     </div>
   )
 }

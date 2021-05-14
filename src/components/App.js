@@ -6,6 +6,9 @@ import Login from './Login';
 import PostShow from './PostShow';
 import UserShow from './UserShow';
 import PostEdit from './PostEdit';
+import NavBar from './NavBar'
+import Logout from './Logout'
+import Header from './Header'
 
 
 function App() {
@@ -25,21 +28,31 @@ function App() {
   
   return (
     <>
+      <Header />
       {(!window.sessionStorage.getItem("currentUserId")) ? <Login setLoggedIn={setLoggedIn} loggedIn={loggedIn}/> :
-      <Switch>
-        <Route exact path="/">
-          <PostList posts={posts} setPosts={setPosts} removePost={removePost} />
-        </Route>
-        <Route exact path="/posts/:id/">
-          <PostShow removePost={removePost}/>
-        </Route> 
-        <Route path="/users/:id"> 
-          <UserShow removePost={removePost}/>
-        </Route>
-        <Route exact path="/posts/:id/edit">
-          <PostEdit />
-        </Route>
-      </Switch>}
+      <>
+        <NavBar />
+        <Switch>
+          <Route exact path="/">
+            <PostList posts={posts} setPosts={setPosts} removePost={removePost} />
+          </Route>
+          <Route exact path="/posts/:id/">
+            <PostShow removePost={removePost}/>
+          </Route> 
+          <Route path="/users/:id"> 
+            <UserShow removePost={removePost}/>
+          </Route>
+          <Route exact path="/posts/:id/edit">
+            <PostEdit />
+          </Route>
+          <Route path="/logout">
+            <Logout setLoggedIn={setLoggedIn}/>
+          </Route>
+          <Route path="/login">
+            <Login setLoggedIn={setLoggedIn} loggedIn={loggedIn} />
+          </Route>
+        </Switch>
+      </>}
     </>
   );
 }

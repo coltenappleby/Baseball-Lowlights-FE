@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { Link } from 'react-router-dom'
 
 
 function CommentCard({content, username, updatedAt, userId, id, deleteComment}) {
@@ -40,21 +41,21 @@ function CommentCard({content, username, updatedAt, userId, id, deleteComment}) 
 
 
   return (
-    <li>
+    <div className="comment-card">
       
-      <p>Posted By: {username}</p>
+      <p>Posted By: <Link to={`/users/${userId}`}>{username}</Link></p>
       {!isEditMode ? 
       <p>{text}</p> :
       <form onSubmit = {handleSubmit}>
         <textarea name="content" value= {text} onChange = {handleChange} rows="4" cols="25"></textarea>
         <input type="submit"/>
       </form> }
-      <p>Updated At: {updatedAt}</p>
-      {loggedInUserId === userId && <button onClick={handleClick}>Edit Comment</button> }
-      {loggedInUserId === userId && <button onClick={handleDeleteClick}> 🗑️ </button> }
-  
+      <div className="comment-buttons">
+        {loggedInUserId === userId && <button onClick={handleClick}>Edit Comment</button> }
+        {loggedInUserId === userId && <button onClick={handleDeleteClick}> 🗑️ </button> }
+      </div>
       
-    </li>
+    </div>
     ) 
 
 

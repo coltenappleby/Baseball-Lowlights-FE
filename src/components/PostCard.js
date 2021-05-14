@@ -88,21 +88,28 @@ function PostCard({
     <div className="post-card">
       <div className="post-card-likes">
         <div className="post-card-likes-content">
-          {!isLiked ? <button onClick={handleLike}>👍</button> :
-          <button onClick={handleDisLike}>👎</button>}
-          <p>Likes:</p>
-          <p>{likeCountCurrent}</p>
+          <div className="post-card-likes-top">
+            {!isLiked ? (
+              <button onClick={handleLike}>👍</button>
+            ) : (
+              <button onClick={handleDisLike}>👎</button>
+            )}
+            <p>Likes:</p>
+            <p>{likeCountCurrent}</p>
+          </div>
+
           {loggedInUserId === userId && (
-            <>
-            <Link to={`/posts/${id}/edit`}><button> EDIT </button></Link>
-            <button onClick={handleDelete}>Delete</button>
-            </>
+            <div className="post-card-update">
+              <Link to={`/posts/${id}/edit`}><button>Edit</button></Link>
+              <button onClick={handleDelete}>Delete</button>
+            </div>
           )}
         </div>
       </div>
       <div className="post-card-main">
         <div className="post-card-header">
-          <p><Link to={`/users/${userId}`}><strong>{username}</strong></Link> | {teamsDisplay}</p> 
+          <p><Link to={`/users/${userId}`}><strong>{username}</strong></Link></p> 
+          <p>{teamsDisplay}</p> 
           <Link to={`/posts/${id}`}><h3>{title}</h3></Link>
         </div>
         {mediaHtml}

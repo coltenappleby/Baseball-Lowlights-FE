@@ -1,8 +1,9 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
   'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-  sans-serif;
+  sans-serif; */
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: rgb(211, 227, 240);
@@ -23,11 +24,71 @@ a:visited {
 }
 
 #root > div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 
+/* GENERAL FORM STYLES */
+
+form > input {
+  border: 1px solid black;
+  height: 30px;
+}
+
+/* HEADER STYLES */
+
+header {
+  height: 10em;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+}
+
+header > img {
+  height: 100%;
+  border-radius: 100%;
+}
+
+.logo-right {
+  float: right;
+}
+
+header > h1 {
+  display: flex;
+  align-items: center;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  color: rgb(186, 197, 206);
+  font-style: italic;
+  text-decoration: underline;
+  font-size: 3em;
+}
+
+/* LOGIN FORM STYLES */
+
+.login-form > button {
+  width: 100%;
+  margin-top: 1em;
+}
+
+.login-submit {
+  width: 100%;
+  margin-top: 1em;
+}
+
+/* NAVBAR STYLES */
+
+.nav-bar{
+  position: fixed;
+  background: white;
+  width: 15%;
+  height: 20%;
+  display: flex;
+  justify-content: center;
+}
+
+
+/* POST CARD STYLES */
 .post-cards-container {
   width: 50%;
 }
@@ -51,13 +112,17 @@ a:visited {
 
 .post-card-likes-content {
   margin-top: 5px;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.post-card-likes-content > button {
+.post-card-likes-top > button {
   margin-left: 5px;
 }
 
-.post-card-likes-content > p {
+.post-card-likes-top > p {
   margin: 2px;
 }
 
@@ -71,6 +136,20 @@ a:visited {
   width: 80%;
 }
 
+.post-card-update {
+  width: 40px;
+}
+
+.post-card-update > button {
+  width: 100%;
+  font-size: 10px;
+}
+
+.post-card-update > a > button {
+  width: 100%;
+  font-size: 10px;
+  
+}
 
 .post-card-header {
   width: 75%
@@ -92,12 +171,31 @@ a:visited {
   min-width: 100%;
 }
 
+/* COMMENT SECTION STYLES */
 
-
-/* .post-card-header {
-  width: 100%;
+.comment-section {
   display: flex;
-  flex-direction: row;
-} */
+  flex-direction: column;
+  align-items: center;
+}
+
+.comment-cards-container {
+  width: 100%;
+}
+
+.comment-card {
+  background-color: white;
+  border: 1px solid rgb(149, 175, 197);
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  padding: 2px;
+  border-radius: 3%;
+}
+
+.comment-buttons {
+  text-align: center;
+}
+
 
 

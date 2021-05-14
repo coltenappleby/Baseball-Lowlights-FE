@@ -52,7 +52,7 @@ function Register({ setLoggedIn }) {
         <input type="text" name="username" value={formData.username} onChange={handleChange}/><br />
         <label>Password: </label><br/>
         <input type="password" name="password" value={formData.password} onChange={handleChange}/><br />
-        <input type="submit" />
+        <input className="login-submit" type="submit" />
       </form>
     </div>
   )

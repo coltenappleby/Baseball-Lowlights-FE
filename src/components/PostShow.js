@@ -47,7 +47,8 @@ function PostShow({ removePost }){
   return (
     <>
       {errors ? <div><h1>{errors}</h1></div> :
-      <>
+      <div className="post-show-container">
+
         <div className="post-cards-container">
           {postCards}
         </div>
@@ -55,9 +56,9 @@ function PostShow({ removePost }){
         <div className="comment-section">
           <h3>Comments</h3>
           <CommentCreate setComments = {setComments} comments = {comments} postId = {id} />
-          <ul>{commentCards} </ul>
+          <div className="comment-cards-container">{commentCards}</div>
         </div>
-      </>}
+      </div>}
     </>
   )
 }

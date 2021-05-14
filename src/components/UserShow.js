@@ -40,7 +40,7 @@ function UserShow({ removePost }) {
     return(
         <div>
             <h1>{user.username}'s Posts</h1>
-            {postCards > 0 ? (
+            {userShowPosts.length > 0 ? (
                 <div className="post-cards-container">
                     {postCards}
                 </div>) 
