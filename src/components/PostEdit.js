@@ -86,7 +86,7 @@ function PostEdit({ removePost }){
                 <div className="post-form-middle-row">
                     <div className="post-form-middle-row-input">
                         <label>Post Type: </label><br/>
-                        <select name="media_type" value={formData.mediaType} onChange={handleChange}>
+                        <select name="mediaType" value={formData.mediaType} onChange={handleChange}>
                             <option value="image/gif">Image/Gif</option>
                             <option value="text">Text</option>
                             <option value="video">Video</option>
@@ -107,7 +107,7 @@ function PostEdit({ removePost }){
                 </div>    
                 <label>Media Link: </label><br/>
                 <textarea 
-                    name="media_link" 
+                    name="mediaLink" 
                     value={formData.mediaLink} 
                     onChange={handleChange}
                     rows="8"

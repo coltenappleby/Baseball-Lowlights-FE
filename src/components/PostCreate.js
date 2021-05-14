@@ -4,7 +4,7 @@ function PostCreate({posts, setPosts, setShowForm}) {
     const [formData, setFormData] = useState({
         title: "",
         media_link: "",
-        media_type: "image/gif",
+        media_type: "video",
         team1: "none",
         team2: "none",
         description: "",
@@ -72,9 +72,9 @@ function PostCreate({posts, setPosts, setShowForm}) {
                     <div className="post-form-middle-row-input">
                         <label>Post Type: </label><br/>
                         <select name="media_type" onChange={handleChange}>
+                            <option value="video">Video</option>
                             <option value="image/gif">Image/Gif</option>
                             <option value="text">Text</option>
-                            <option value="video">Video</option>
                         </select><br/>
                     </div>
                     <div className="post-form-middle-row-input">   
