@@ -43,7 +43,7 @@ function App() {
             <UserShow removePost={removePost}/>
           </Route>
           <Route exact path="/posts/:id/edit">
-            <PostEdit />
+            <PostEdit removePost={removePost}/>
           </Route>
           <Route path="/logout">
             <Logout setLoggedIn={setLoggedIn}/>

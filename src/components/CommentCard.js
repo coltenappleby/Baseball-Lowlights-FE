@@ -44,12 +44,14 @@ function CommentCard({content, username, updatedAt, userId, id, deleteComment}) 
     <div className="comment-card">
       
       <p>Posted By: <Link to={`/users/${userId}`}>{username}</Link></p>
-      {!isEditMode ? 
-      <p>{text}</p> :
-      <form onSubmit = {handleSubmit}>
-        <textarea name="content" value= {text} onChange = {handleChange} rows="4" cols="25"></textarea>
-        <input type="submit"/>
-      </form> }
+      {!isEditMode ? (
+        <p>{text}</p>
+      ) : (
+        <form onSubmit = {handleSubmit}>
+          <textarea name="content" value= {text} onChange = {handleChange} rows="8" cols="60"></textarea>
+          <input type="submit"/>
+        </form> 
+      )}
       <div className="comment-buttons">
         {loggedInUserId === userId && <button onClick={handleClick}>Edit Comment</button> }
         {loggedInUserId === userId && <button onClick={handleDeleteClick}> 🗑️ </button> }

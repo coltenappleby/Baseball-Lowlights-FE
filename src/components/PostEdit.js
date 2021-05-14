@@ -3,7 +3,7 @@ import { useParams, useHistory } from 'react-router-dom';
 import PostCard from './PostCard'
 
 
-function PostEdit(){
+function PostEdit({ removePost }){
     let history = useHistory()
     const { id } = useParams();
     const [postData, setPostData] = useState([])
@@ -25,7 +25,7 @@ function PostEdit(){
         fetch(`http://localhost:3000/posts/${id}`)
         .then(res => res.json())
         .then(data => {
-            setPostData([data])
+            setPostData(data)
             setFormData(data)
         })
     }, [id])
@@ -55,20 +55,19 @@ function PostEdit(){
         
     }
 
-    const postCards = postData.map((post) => {
-        return (
-            <div className="post-cards-container">
-                <PostCard key={post.id} {...post}/>
-            </div>
-        )
-      })
-
-
     return(
         <div>
             <h1> {formData.title} </h1> 
 
-            {postCards}
+            {postData.likes && (
+            <div className="post-cards-container">
+                <PostCard 
+                    key={postData.id} 
+                    {...postData}
+                    removePost={removePost}
+                />
+            </div>
+            )}
 
             <form onSubmit={handleSubmit}>
                 <label>Title: </label><br/>

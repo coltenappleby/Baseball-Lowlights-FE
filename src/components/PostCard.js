@@ -19,9 +19,13 @@ function PostCard({
   let history = useHistory()
   let location = useLocation()
   const loggedInUserId = parseInt(window.sessionStorage.getItem("currentUserId"))
-  const [isLiked, setIsLiked] = useState(likes.map((like) => like.user_id).includes(loggedInUserId))
   const [likeCountCurrent, setLikeCountCurrent] = useState(likesCount)
   const [activeLikes, setActiveLikes] = useState(likes)
+  const [isLiked, setIsLiked] = useState(likes.map((like) => like.user_id).includes(loggedInUserId))
+  
+
+
+  console.log(likes)
 
   let mediaHtml
   
