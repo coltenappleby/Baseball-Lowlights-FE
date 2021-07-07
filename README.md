@@ -3,7 +3,7 @@ This is in React.js, HTML, and CSS.
 Backend is in Ruby on Rails with a SQLite database
 [Link to backend](https://github.com/coltenappleby/Baseball-Lowlights-BE)
 
-This was a group project done with [MelSwell](https://github.com/MelSwell)
+This was a group project done with [MelSwell](https://github.com/MelSwell).
 Link to the orginal repo can be found [here](https://github.com/MelSwell/baseball-lowlights-frontend)
 
 
