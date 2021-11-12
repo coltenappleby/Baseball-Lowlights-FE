@@ -22,7 +22,7 @@ function PostCreate({posts, setPosts, setShowForm}) {
     
     function handleSubmit(e) {
         e.preventDefault()
-        fetch(`http://localhost:3000/posts/`, {
+        fetch(`${process.env.REACT_APP_API_END_POINT}/posts/`, {
             method: 'POST',
             headers: {
                 "Content-Type": 'application/json',

@@ -22,3 +22,8 @@ Link to the orginal repo can be found [here](https://github.com/MelSwell/basebal
 
 ## Demo
 
+
+
+### How to use 
+
+to run the development: npm run start:dev

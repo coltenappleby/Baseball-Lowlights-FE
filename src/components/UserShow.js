@@ -9,7 +9,7 @@ function UserShow({ removePost }) {
     let { id } = useParams()
     
     useEffect( () => {
-        fetch(`http://localhost:3000/users/${id}`)
+        fetch(`${process.env.REACT_APP_API_END_POINT}/users/${id}`)
             .then(res => res.json())
             .then((userData) => {
                 setUserShowPosts(userData.posts)

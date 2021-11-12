@@ -23,7 +23,7 @@ function PostEdit({ removePost }){
 
 
     useEffect(() => {
-        fetch(`http://localhost:3000/posts/${id}`)
+        fetch(`${process.env.REACT_APP_API_END_POINT}/posts/${id}`)
         .then(res => res.json())
         .then(data => {
             setPostData(data)

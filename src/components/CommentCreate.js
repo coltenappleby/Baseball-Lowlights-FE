@@ -13,7 +13,7 @@ function CommentCreate({postId, setComments, comments}) {
 
     function handleSubmit(e) {
         e.preventDefault()
-        fetch(`http://localhost:3000/comments/`, {
+        fetch(`${process.env.REACT_APP_API_END_POINT}/comments/`, {
             method: 'POST',
             headers: {
                 "Content-Type": 'application/json',

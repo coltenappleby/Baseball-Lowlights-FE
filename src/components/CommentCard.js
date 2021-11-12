@@ -18,7 +18,7 @@ function CommentCard({content, username, userId, id, deleteComment}) {
   function handleSubmit(e){
     e.preventDefault()
 
-    fetch(`http://localhost:3000/comments/${id}`, {
+    fetch(`${process.env.REACT_APP_API_END_POINT}/comments/${id}`, {
     method: "PATCH",
     headers: {
       "Content-Type": 'application/json',
@@ -33,7 +33,7 @@ function CommentCard({content, username, userId, id, deleteComment}) {
   function handleDeleteClick(e){
     e.preventDefault()
 
-    fetch(`http://localhost:3000/comments/${id}`, {method: "DELETE"})
+    fetch(`${process.env.REACT_APP_API_END_POINT}/comments/${id}`, {method: "DELETE"})
     setIsEditMode(false)
 
     deleteComment(id)

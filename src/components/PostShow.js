@@ -11,7 +11,7 @@ function PostShow({ removePost }){
   let { id } = useParams()
   
   useEffect(() => {
-    fetch(`http://localhost:3000/posts/${id}`)
+    fetch(`${process.env.REACT_APP_API_END_POINT}/posts/${id}`)
     .then(resp => resp.json())
     .then((data) => {
       if (data.error) {

@@ -17,7 +17,8 @@ function Register({ setLoggedIn }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    fetch('http://localhost:3000/users', {
+    console.log(process.env.REACT_APP_API_END_POINT)
+    fetch(`${process.env.REACT_APP_API_END_POINT}/users`, {
       method: 'POST',
       headers: {
         "Content-Type": 'application/json',

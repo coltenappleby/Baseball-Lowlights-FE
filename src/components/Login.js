@@ -21,7 +21,7 @@ function Login({ setLoggedIn }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    fetch('http://localhost:3000/users/login', {
+    fetch(`${process.env.REACT_APP_API_END_POINT}/users/login`, {
       method: 'POST',
       headers: {
         "Content-Type": 'application/json',

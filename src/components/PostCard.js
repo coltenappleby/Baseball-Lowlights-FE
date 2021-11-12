@@ -33,7 +33,7 @@ function PostCard({
   }
 
   function handleLike(e){
-    fetch(`http://localhost:3000/likes`, {
+    fetch(`${process.env.REACT_APP_API_END_POINT}/likes`, {
       method: 'POST',
       headers: {
         "Content-Type": 'application/json',
@@ -51,7 +51,7 @@ function PostCard({
   function handleDisLike(e){
     const targetLikeId = activeLikes.find((like) => like.user_id === loggedInUserId).id
     
-    fetch(`http://localhost:3000/likes/${targetLikeId}`, {method: 'DELETE'})
+    fetch(`${process.env.REACT_APP_API_END_POINT}/likes/${targetLikeId}`, {method: 'DELETE'})
     
     setIsLiked(false)
     setLikeCountCurrent((likeCountCurrent) => likeCountCurrent-1)
@@ -61,7 +61,7 @@ function PostCard({
   }
 
   function handleDelete(e) {
-    fetch(`http://localhost:3000/posts/${id}`, {method: 'DELETE'})
+    fetch(`${process.env.REACT_APP_API_END_POINT}/posts/${id}`, {method: 'DELETE'})
     removePost(id)
     if(location.pathname.includes("/users")){
       removeUserPost(id)

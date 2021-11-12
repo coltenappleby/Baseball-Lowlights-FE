@@ -16,7 +16,7 @@ function App() {
   const [posts, setPosts] = useState([])
   
   useEffect(() => {
-    fetch('http://localhost:3000/posts')
+    fetch(`${process.env.REACT_APP_API_END_POINT}/posts`)
     .then(resp => resp.json())
     .then(setPosts)
   }, [])
